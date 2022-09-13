@@ -1,0 +1,29 @@
+﻿API gateway'i bu projede routing merkezi olarak kullanıcaz
+
+Asıl amacı gelen requestlerin tek bir merkezi yapıdan handle edilmesi. Sorgular Api gateway'e atılır. Api gateway de gelen url üzerinden hangi api isteğini hangi uygulamya yönlendirceğinin kararını verir.
+
+Adımlar 
+
+1- Gateway projesi yanında 2 tane api projesi yaratılır. Properties klasörünün altında launchsettings isimli bir dosya var. Bu dosya uygulama ayağa kalktığında nasıl bir davranış sergileyeceğini tanımladığınız yerdir
+
+2- 2 farklı profil görceksiniz. Birincisi IIS Express, diğeri de User.API gibi. Uygulamayı ayağa kaldırırken yukarıda run dedğiniz yerde hangi profilinin ayağa kalkıcağını seçebilirsiniz. Ayağa kalkacak profile özel
+config yapılarınıda ekleyebilirinsiz.
+
+3- Ocelot projesinin içinde gerekli tanımlamaları Program.cs içinde yaptık. Config dosyası olması için de bir tane Ocelot.json diye bir dosyamız var
+ Bu dosyanın içinde gerekli routing configlerini yapıyoruz.
+
+DownstreamPathTemplate
+Yönlendirme yapılacak microservice’in route’unu tutmaktadır.
+
+DownstreamScheme
+İlgili microservice’e yapılacak isteğin hangi protokol üzerinden gerçekleştirileceğini bildirmektedir.
+DownstreamHostAndPorts
+
+Microservice’in ‘Host’ ve ‘Port’ bilgilerini tutmaktadır.
+UpstreamPathTemplate
+
+API Gateway üzerinden microservice’e yapılacak yönlendirmenin route’unu tutmaktadır.
+
+UpstreamHttpMethod
+Hangi isteklerin yapılabileceği bildirilmektedir.
+
